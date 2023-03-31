@@ -25,8 +25,8 @@ import java.util.Objects;
 
 public class Inventory {
 
-    private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
-    private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public static void addPart(Part newPart) {
         allParts.add(newPart);
@@ -69,6 +69,7 @@ public class Inventory {
                 namedParts.add(searchPart);
             }
         }
+
         return namedParts;
     }
 
@@ -110,26 +111,17 @@ public class Inventory {
 
     public static void addPartData() {
 
-        Part brakes = new Part(1, "Brakes", 12.99, 15, 1, 20) {};
-        addPart(brakes);
-        Part tires = new Part(2, "Tires", 14.99, 15, 1, 20) {};
-        addPart(tires);
-        Part rims = new Part(3, "Rims", 56.99, 15, 1, 20) {};
-        addPart(rims);
-        Part outsourced =  new Outsourced(4, "Outsourced", 99.99, 12, 1, 20, "Test");
-        addPart(outsourced);
-        Part inhouse = new InHouse(5, "InHouse", 99.99, 12, 1, 20, 146);
-        addPart(inhouse);
+        addPart(new InHouse(1,"Brakes", 12.99, 15, 1, 20, 146));
+        addPart(new InHouse(2, "Tires", 14.99, 15, 1, 20, 144));
+        addPart(new InHouse(3, "Rims", 56.99, 15, 1, 20, 142));
+        addPart(new Outsourced(4, "Calipers", 99.99, 12, 1, 20, "BMX"));
     }
 
     public static void addProductData() {
 
-        Product giantBicycle = new Product(1, "Giant Bicycle", 299.99, 15, 1, 20);
-        addProduct(giantBicycle);
-        Product scottBicycle = new Product(2, "Scott Bicycle", 199.99, 15, 1, 20);
-        addProduct(scottBicycle);
-        Product gtBicycle = new Product(3, "GT Bike", 99.99, 15, 1, 20);
-        addProduct(gtBicycle);
+        addProduct(new Product(1, "Mountain Bicycle", 299.99, 15, 1, 20));
+        addProduct(new Product(2, "Scott Bicycle", 199.99, 15, 1, 20));
+        addProduct(new Product(3, "GT Bike", 99.99, 15, 1, 20));
     }
 
     static {
