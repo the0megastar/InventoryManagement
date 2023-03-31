@@ -65,7 +65,7 @@ public class Inventory {
         ObservableList<Part> allParts = getAllParts();
 
         for (Part searchPart : allParts) {
-            if (searchPart.getName().contains(partName)) {
+            if (searchPart.getName().toLowerCase().contains(partName)) {
                 namedParts.add(searchPart);
             }
         }
@@ -78,7 +78,7 @@ public class Inventory {
         ObservableList<Product> allProducts = getAllProducts();
 
         for (Product searchProduct : allProducts) {
-            if (searchProduct.getName().contains(productName)) {
+            if (searchProduct.getName().toLowerCase().contains(productName)) {
                 namedProducts.add(searchProduct);
             }
         }

@@ -92,6 +92,14 @@ public class InventoryController extends Application implements Initializable {
         searchError.showAndWait();
     }
 
+    private void noSelection() {
+        Alert noSelection = new Alert(Alert.AlertType.INFORMATION);
+        noSelection.setTitle("No Selection");
+        noSelection.setHeaderText(null);
+        noSelection.setContentText("Please select an item from the table to modify.");
+        noSelection.showAndWait();
+    }
+
     @FXML
     private void searchParts() {
         String searchString = partSearch.getText();
@@ -106,7 +114,7 @@ public class InventoryController extends Application implements Initializable {
                 searchList = lookupPart(searchInteger);
                 allPartTable.setItems(searchList);
             } catch (NumberFormatException e) {
-                // ignore
+                throw new RuntimeException(e);
             }
 
             if (searchList.isEmpty()) {
@@ -132,7 +140,7 @@ public class InventoryController extends Application implements Initializable {
                 searchList = lookupProduct(searchInteger);
                 allProductTable.setItems(searchList);
             } catch (NumberFormatException e) {
-                // ignore
+                throw new RuntimeException(e);
             }
 
             if (searchList.isEmpty()) {
@@ -155,17 +163,18 @@ public class InventoryController extends Application implements Initializable {
 
     @FXML
     private void modifyProductButton(ActionEvent event) throws IOException {
-        try {
-            modifyProduct = allProductTable.getSelectionModel().getSelectedItem();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        modifyProduct = allProductTable.getSelectionModel().getSelectedItem();
+
+        if (modifyProduct == null) {
+            noSelection();
+        } else {
+                Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("modify-product.fxml")));
+                Scene mainMenuScene = new Scene(mainMenuParent);
+                Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                appStage.setScene(mainMenuScene);
+                appStage.show();
+            }
         }
-        Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("modify-product.fxml")));
-        Scene mainMenuScene = new Scene(mainMenuParent);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(mainMenuScene);
-        appStage.show();
-    }
 
     @FXML
     private void addPartButton(ActionEvent event) throws IOException {
@@ -178,17 +187,17 @@ public class InventoryController extends Application implements Initializable {
 
     @FXML
     private void modifyPartButton(ActionEvent event) throws IOException {
-        try {
-            modifyPart = allPartTable.getSelectionModel().getSelectedItem();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        modifyPart = allPartTable.getSelectionModel().getSelectedItem();
 
-        Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("modify-part.fxml")));
-        Scene mainMenuScene = new Scene(mainMenuParent);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(mainMenuScene);
-        appStage.show();
+        if (modifyPart == null) {
+            noSelection();
+        } else {
+            Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("modify-part.fxml")));
+            Scene mainMenuScene = new Scene(mainMenuParent);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(mainMenuScene);
+            appStage.show();
+        }
     }
 
     @FXML
