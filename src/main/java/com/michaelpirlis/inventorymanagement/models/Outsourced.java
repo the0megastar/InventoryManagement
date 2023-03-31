@@ -1,13 +1,6 @@
 package com.michaelpirlis.inventorymanagement.models;
 
-/**
- * @author Michael Pirlis
- * √ private companyName:String
- * √ public Outsourced(id:int, name:String, price:double, stock:int, min:int, max:int, companyName:String)
- * √ public setCompanyName(companyName:String):void
- * √ public getCompanyName():String
- */
-
+/** This defines Outsourced Parts that extends and inherits the Part class, including all getters and setters. */
 public class Outsourced extends Part{
     private String companyName;
 
@@ -16,16 +9,12 @@ public class Outsourced extends Part{
         this.companyName = companyName;
     }
 
-    /**
-     * @param companyName the name to set
-     */
+    /** Sets the Company Name for Outsourced parts. */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    /**
-     * @return the companyName
-     */
+    /** Collects the Company Name for Outsourced parts. */
     public String getCompanyName() {
         return companyName;
     }

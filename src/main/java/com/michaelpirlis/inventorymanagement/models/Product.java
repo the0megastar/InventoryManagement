@@ -3,21 +3,7 @@ package com.michaelpirlis.inventorymanagement.models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- * @author Michael Pirlis
- * √ private associatedParts:ObservableList<Part>
- * √ private id:int
- * √ private name:String
- * √ private price:double
- * √ private stock:int
- * √ private min:int
- * √ private max:int
- * √ public Product(id:int, name:String, price:double, stock:int, min:int, max:int)
- * √ public addAssociatedPart(part:Part):void
- * √ public deleteAssociatedPart(selectedAssociatedPart:Part):boolean
- * √ getAllAssociatedParts():ObservableList<Part>
- */
-
+/** This defines the Product class including all getters and setters. */
 public class Product {
 
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
@@ -38,103 +24,77 @@ public class Product {
         this.max = max;
     }
 
-//    public Product () {
-//        this(0, "test name", 1.00, 1, 1, 20);
-////        product.addAssociatedPart(selectedItem);
-//    }
-
-    /**
-     * @return the id
-     */
+    /** Collects the Product id. */
     public int getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
+    /** Sets the Product id. */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the name
-     */
+    /** Collects the Product name. */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
+    /** Sets the Product name. */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the price
-     */
+    /** Collects the Product price. */
     public double getPrice() {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
+    /** Sets the Product price. */
     public void setPrice(double price) {
         this.price = price;
     }
 
-    /**
-     * @return the stock
-     */
+    /** Collects the Product stock quantity. */
     public int getStock() {
         return stock;
     }
 
-    /**
-     * @param stock the stock to set
-     */
+    /** Sets the Product stock quantity. */
     public void setStock(int stock) {
         this.stock = stock;
     }
 
-    /**
-     * @return the min
-     */
+    /** Collects the Product minimum inventory quantity. */
     public int getMin() {
         return min;
     }
 
-    /**
-     * @param min the min to set
-     */
+    /** Sets the Product minimum inventory quantity. */
     public void setMin(int min) {
         this.min = min;
     }
 
-    /**
-     * @return the max
-     */
+    /** Collects the Product maximum inventory quantity. */
     public int getMax() {
         return max;
     }
 
-    /**
-     * @param max the max to set
-     */
+    /** Sets the Product maximum inventory quantity. */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /** Adds associated parts to the Product. */
     public void addAssociatedPart(Part part) {
         associatedParts.add(part);
     }
 
+    /** Removes associated parts to the Product. */
     public boolean deleteAssociatedPart(Part selectedAssociatedPart){
         return associatedParts.remove(selectedAssociatedPart);
     }
 
+    /** Collects all associated parts to the Product. */
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
     }

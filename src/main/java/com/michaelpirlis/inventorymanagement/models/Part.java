@@ -1,10 +1,6 @@
 package com.michaelpirlis.inventorymanagement.models;
 
-/**
- * Supplied class Part.java
- * @author Michael Pirlis
- */
-
+/** Supplied class Part.java which defines the abstract class Part. Including getters and setters. */
 public abstract class Part {
     private int id;
     private String name;
@@ -22,86 +18,62 @@ public abstract class Part {
         this.max = max;
     }
 
-    /**
-     * @return the id
-     */
+    /** Collects the Part id. */
     public int getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
+    /** Sets the Part id. */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the name
-     */
+    /** Collects the Part name. */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
+    /** Sets the Part name. */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the price
-     */
+    /** Collects the Part price. */
     public double getPrice() {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
+    /** Sets the Part price. */
     public void setPrice(double price) {
         this.price = price;
     }
 
-    /**
-     * @return the stock
-     */
+    /** Collects the Part stock quantity. */
     public int getStock() {
         return stock;
     }
 
-    /**
-     * @param stock the stock to set
-     */
+    /** Sets the Part stock quantity. */
     public void setStock(int stock) {
         this.stock = stock;
     }
 
-    /**
-     * @return the min
-     */
+    /** Collects the Part minimum inventory quantity. */
     public int getMin() {
         return min;
     }
 
-    /**
-     * @param min the min to set
-     */
+    /** Sets the Part minimum inventory quantity. */
     public void setMin(int min) {
         this.min = min;
     }
 
-    /**
-     * @return the max
-     */
+    /** Collects the Part maximum inventory quantity. */
     public int getMax() {
         return max;
     }
 
-    /**
-     * @param max the max to set
-     */
+    /** Sets the Part maximum inventory quantity. */
     public void setMax(int max) {
         this.max = max;
     }

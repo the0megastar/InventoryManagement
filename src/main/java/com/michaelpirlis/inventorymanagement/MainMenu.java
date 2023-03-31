@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/** The Main Menu class launches the main GUI of the Inventory Management system. */
 public class MainMenu extends Application implements Initializable {
 
+    /** This method loads the inventory FXML file for the application, sets up the scene, and displays the primary stage.*/
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InventoryController.class.getResource("inventory.fxml"));

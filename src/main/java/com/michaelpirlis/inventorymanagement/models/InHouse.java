@@ -1,14 +1,6 @@
 package com.michaelpirlis.inventorymanagement.models;
 
-/**
- * @author Michael Pirlis
- * √ private machineId:int
- * √ public InHouse(id:int, name:String, price:double, stock:int, min:int, max:int, machineId:int)
- * √ public setMachineId(machineId:int):void
- * √ public getMachineId():int
- */
-
-
+/** This defines In House Parts that extends and inherits the Part class, including all getters and setters. */
 public class InHouse extends Part {
     private int machineID;
 
@@ -17,16 +9,12 @@ public class InHouse extends Part {
         this.machineID = machineId;
     }
 
-    /**
-     * @param machineID set the machineID
-     */
+    /** Sets the Machine id for In House parts. */
     public void setMachineID(int machineID) {
         this.machineID = machineID;
     }
 
-    /**
-     * @return the machineID
-     */
+    /** Collects the Machine id for In House parts. */
     public int getMachineID() {
         return machineID;
     }

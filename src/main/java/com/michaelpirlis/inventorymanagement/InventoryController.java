@@ -43,7 +43,7 @@ public class InventoryController extends Application implements Initializable {
     public static Part modifyPart;
     public static Product modifyProduct;
 
-
+    /** This method initializes the part and product data and tables. */
     public void initialize(URL location, ResourceBundle resources) {
 
         partTableSetup(allPartTable, partIdColumn, partNameColumn, partInventoryColumn, partPriceColumn);
@@ -74,6 +74,7 @@ public class InventoryController extends Application implements Initializable {
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    /** Loads the inventory FXML file for the application, sets up the scene, and displays the primary stage.*/
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InventoryController.class.getResource("inventory.fxml"));
@@ -152,6 +153,7 @@ public class InventoryController extends Application implements Initializable {
         productSearch.clear();
     }
 
+    /** Loads the add product FXML file and form, sets up the scene, and displays the primary stage.*/
     @FXML
     private void addProductButton(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-product.fxml")));
@@ -161,6 +163,10 @@ public class InventoryController extends Application implements Initializable {
         appStage.show();
     }
 
+    /** Checks for a selected Product from the table. If none is selected an alert appears,
+     * otherwise it loads the modify product FXML file and form, sets up the scene, and displays the primary stage.
+     * Initially the screen progress regardless of being selected. I then realized I missed initializing modifyProduct
+     * before the null check. */
     @FXML
     private void modifyProductButton(ActionEvent event) throws IOException {
         modifyProduct = allProductTable.getSelectionModel().getSelectedItem();
@@ -174,8 +180,9 @@ public class InventoryController extends Application implements Initializable {
                 appStage.setScene(mainMenuScene);
                 appStage.show();
             }
-        }
+    }
 
+    /** Loads the add part FXML file and form, sets up the scene, and displays the primary stage.*/
     @FXML
     private void addPartButton(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-part.fxml")));
@@ -185,6 +192,8 @@ public class InventoryController extends Application implements Initializable {
         appStage.show();
     }
 
+    /** This method checks for a selected Part from the table. If none is selected an alert appears,
+     * otherwise it loads the modify product FXML file and form, sets up the scene, and displays the primary stage. */
     @FXML
     private void modifyPartButton(ActionEvent event) throws IOException {
         modifyPart = allPartTable.getSelectionModel().getSelectedItem();
@@ -200,6 +209,7 @@ public class InventoryController extends Application implements Initializable {
         }
     }
 
+    /** Created an alert to confirm part deletion. I expanded the scope to include the part name in the dialog prompt. */
     @FXML
     private void deletePartButton() {
         Part selectedPart = allPartTable.getSelectionModel().getSelectedItem();
