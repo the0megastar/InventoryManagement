@@ -15,182 +15,182 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.michaelpirlis.inventorymanagement.ModifyPartController">
-   <children>
-      <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0" text="Inventory Management System">
-                     <font>
-                        <Font name="Avenir Book" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label text="Part Inventory">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TableView fx:id="allPartTable" prefHeight="530.0">
-                     <columns>
-                        <TableColumn fx:id="partIdColumn" prefWidth="75.0" text="Part ID" />
-                        <TableColumn fx:id="partNameColumn" prefWidth="255.0" text="Part Name" />
-                        <TableColumn fx:id="partInventoryColumn" prefWidth="130.0" text="Inventory Level" />
-                        <TableColumn fx:id="partPriceColumn" prefWidth="128.0" text="Price / Cost per Unit" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TableView>
-               </children>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.michaelpirlis.inventorymanagement.ModifyPartController">
+   <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <padding>
+               <Insets left="10.0"/>
+            </padding>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0" text="Inventory Management System">
+               <font>
+                  <Font name="Avenir Book" size="18.0"/>
+               </font>
+            </Label>
+            <Label text="Part Inventory">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="allPartTable" prefHeight="530.0">
+               <columns>
+                  <TableColumn fx:id="partIdColumn" prefWidth="75.0" text="Part ID"/>
+                  <TableColumn fx:id="partNameColumn" prefWidth="255.0" text="Part Name"/>
+                  <TableColumn fx:id="partInventoryColumn" prefWidth="130.0" text="Inventory Level"/>
+                  <TableColumn fx:id="partPriceColumn" prefWidth="128.0" text="Price / Cost per Unit"/>
+               </columns>
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TableView>
+         </VBox>
+      </center>
+      <right>
+         <VBox prefHeight="598.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <padding>
+               <Insets left="10.0" right="10.0"/>
+            </padding>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" text="MODIFY PART">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <Separator>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets left="25.0" right="25.0"/>
                </padding>
-            </VBox>
-         </center>
-         <right>
-            <VBox prefHeight="598.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" text="MODIFY PART">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <Separator>
-                     <padding>
-                        <Insets left="25.0" right="25.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <RadioButton fx:id="InHouseRadio" mnemonicParsing="false" onAction="#InHouseEnabled" selected="true" text="In-House">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="PartType" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="OutsourcedRadio" mnemonicParsing="false" onAction="#OutsourcedEnabled" text="Outsourced" toggleGroup="$PartType">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <TextField fx:id="partIDTextField" alignment="CENTER" disable="true" prefWidth="180.0" promptText="Auto Generated ID">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Name">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="partNameTextField" alignment="CENTER" prefWidth="180.0" promptText="Name">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Inventory">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="partInventoryTextField" alignment="CENTER" prefWidth="180.0" promptText="Current Inventory">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Price / Cost">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="partPriceTextField" alignment="CENTER" prefWidth="180.0" promptText="Price / Cost">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Minimum">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="partMinTextField" alignment="CENTER" promptText="Minimum Inventory">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Maximum">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="partMaxTextField" alignment="CENTER" promptText="Maximum Inventory">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <StackPane>
-                     <children>
-                        <Label fx:id="machineIDLabel" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Machine ID">
-                           <font>
-                              <Font name="Avenir Book" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="companyNameLabel" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Company Name" visible="false">
-                           <font>
-                              <Font name="Avenir Book" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </StackPane>
-                  <StackPane>
-                     <children>
-                        <TextField fx:id="machineIDTextField" alignment="CENTER" promptText="Machine ID">
-                           <StackPane.margin>
-                              <Insets bottom="5.0" />
-                           </StackPane.margin>
-                        </TextField>
-                        <TextField fx:id="companyNameTextField" alignment="CENTER" promptText="Company Name" visible="false">
-                           <StackPane.margin>
-                              <Insets bottom="5.0" />
-                           </StackPane.margin>
-                        </TextField>
-                     </children>
-                  </StackPane>
-                  <Button mnemonicParsing="false" onAction="#savePartButton" prefHeight="25.0" prefWidth="180.0" text="Save">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#cancelButton" prefHeight="25.0" prefWidth="180.0" text="Cancel">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </VBox>
-         </right>
-      </BorderPane>
-   </children>
+               <VBox.margin>
+                  <Insets bottom="10.0"/>
+               </VBox.margin>
+            </Separator>
+            <RadioButton fx:id="InHouseRadio" mnemonicParsing="false" onAction="#InHouseEnabled" selected="true"
+                         text="In-House">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="PartType"/>
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="OutsourcedRadio" mnemonicParsing="false" onAction="#OutsourcedEnabled"
+                         text="Outsourced" toggleGroup="$PartType">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </RadioButton>
+            <TextField fx:id="partIDTextField" alignment="CENTER" disable="true" prefWidth="180.0"
+                       promptText="Auto Generated ID">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Name">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <TextField fx:id="partNameTextField" alignment="CENTER" prefWidth="180.0" promptText="Name">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Inventory">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <TextField fx:id="partInventoryTextField" alignment="CENTER" prefWidth="180.0"
+                       promptText="Current Inventory">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Price / Cost">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <TextField fx:id="partPriceTextField" alignment="CENTER" prefWidth="180.0" promptText="Price / Cost">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Minimum">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <TextField fx:id="partMinTextField" alignment="CENTER" promptText="Minimum Inventory">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Maximum">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+            </Label>
+            <TextField fx:id="partMaxTextField" alignment="CENTER" promptText="Maximum Inventory">
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </TextField>
+            <StackPane>
+               <Label fx:id="machineIDLabel" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0"
+                      text="Machine ID">
+                  <font>
+                     <Font name="Avenir Book" size="14.0"/>
+                  </font>
+               </Label>
+               <Label fx:id="companyNameLabel" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0"
+                      text="Company Name" visible="false">
+                  <font>
+                     <Font name="Avenir Book" size="14.0"/>
+                  </font>
+               </Label>
+            </StackPane>
+            <StackPane>
+               <TextField fx:id="machineIDTextField" alignment="CENTER" promptText="Machine ID">
+                  <StackPane.margin>
+                     <Insets bottom="5.0"/>
+                  </StackPane.margin>
+               </TextField>
+               <TextField fx:id="companyNameTextField" alignment="CENTER" promptText="Company Name"
+                          visible="false">
+                  <StackPane.margin>
+                     <Insets bottom="5.0"/>
+                  </StackPane.margin>
+               </TextField>
+            </StackPane>
+            <Button mnemonicParsing="false" onAction="#savePartButton" prefHeight="25.0" prefWidth="180.0"
+                    text="Save">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0"/>
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#cancelButton" prefHeight="25.0" prefWidth="180.0"
+                    text="Cancel">
+               <font>
+                  <Font name="Avenir Book" size="14.0"/>
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0"/>
+               </VBox.margin>
+            </Button>
+         </VBox>
+      </right>
+   </BorderPane>
 </AnchorPane>

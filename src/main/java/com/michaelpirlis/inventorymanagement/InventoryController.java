@@ -27,19 +27,21 @@ import static com.michaelpirlis.inventorymanagement.models.Inventory.lookupProdu
 
 
 public class InventoryController extends Application implements Initializable {
-    public TableColumn<Object, Object> partIdColumn;
-    public TableColumn<Object, Object> partNameColumn;
-    public TableColumn<Object, Object> partInventoryColumn;
-    public TableColumn<Object, Object> partPriceColumn;
-    public TableColumn<Object, Object> productIdColumn;
-    public TableColumn<Object, Object> productNameColumn;
-    public TableColumn<Object, Object> productInventoryColumn;
-    public TableColumn<Object, Object> productPriceColumn;
-    public TableView<Product> allProductTable;
-    public TableView<Part> allPartTable;
-    public TextField partSearch;
-    public TextField productSearch;
+
+    @FXML private TableColumn<Object, Object> partIdColumn;
+    @FXML private TableColumn<Object, Object> partNameColumn;
+    @FXML private TableColumn<Object, Object> partInventoryColumn;
+    @FXML private TableColumn<Object, Object> partPriceColumn;
+    @FXML private TableColumn<Object, Object> productIdColumn;
+    @FXML private TableColumn<Object, Object> productNameColumn;
+    @FXML private TableColumn<Object, Object> productInventoryColumn;
+    @FXML private TableColumn<Object, Object> productPriceColumn;
+    @FXML private TableView<Product> allProductTable;
+    @FXML private TableView<Part> allPartTable;
+    @FXML private TextField partSearch;
+    @FXML private TextField productSearch;
     public static Part modifyPart;
+    public static Product modifyProduct;
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,7 +83,7 @@ public class InventoryController extends Application implements Initializable {
         stage.show();
     }
 
-    public void searchAlert() {
+    private void searchAlert() {
         Alert searchError = new Alert(Alert.AlertType.INFORMATION);
         searchError.setTitle("No Search Results Found");
         searchError.setHeaderText(null);
@@ -91,7 +93,7 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void searchParts() {
+    private void searchParts() {
         String searchString = partSearch.getText();
         ObservableList<Part> searchList = lookupPart(searchString);
         allPartTable.setItems(searchList);
@@ -117,7 +119,7 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void searchProducts(){
+    private void searchProducts(){
         String searchString = productSearch.getText();
         ObservableList<Product> searchList = lookupProduct(searchString);
         allProductTable.setItems(searchList);
@@ -143,7 +145,7 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void addProductButton(ActionEvent event) throws IOException {
+    private void addProductButton(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-product.fxml")));
         Scene mainMenuScene = new Scene(mainMenuParent);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -152,7 +154,12 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void modifyProductButton(ActionEvent event) throws IOException {
+    private void modifyProductButton(ActionEvent event) throws IOException {
+        try {
+            modifyProduct = allProductTable.getSelectionModel().getSelectedItem();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("modify-product.fxml")));
         Scene mainMenuScene = new Scene(mainMenuParent);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -161,7 +168,7 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void addPartButton(ActionEvent event) throws IOException {
+    private void addPartButton(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("add-part.fxml")));
         Scene mainMenuScene = new Scene(mainMenuParent);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -170,7 +177,7 @@ public class InventoryController extends Application implements Initializable {
     }
 
     @FXML
-    public void modifyPartButton(ActionEvent event) throws IOException {
+    private void modifyPartButton(ActionEvent event) throws IOException {
         try {
             modifyPart = allPartTable.getSelectionModel().getSelectedItem();
         } catch (Exception e) {

@@ -43,7 +43,7 @@ public class AddProductController extends Application implements Initializable {
     @FXML private TextField productMinimum;
     @FXML private TextField productMaximum;
 
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private boolean errorCheck = false;
 
 
@@ -135,7 +135,7 @@ public class AddProductController extends Application implements Initializable {
             }
         }
 
-    public void productErrorHandling() {
+    private void productErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
 
         if (productName.getText().isEmpty()) {
@@ -195,7 +195,7 @@ public class AddProductController extends Application implements Initializable {
         }
     }
 
-    public void logicErrorHandling() {
+    private void logicErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
         int min = Integer.parseInt(productMinimum.getText());
         int max = Integer.parseInt(productMaximum.getText());

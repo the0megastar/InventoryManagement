@@ -24,27 +24,30 @@ import static com.michaelpirlis.inventorymanagement.InventoryController.modifyPa
 
 public class ModifyPartController extends Application implements Initializable {
 
-    public RadioButton InHouseRadio;
-    public RadioButton OutsourcedRadio;
-    public ToggleGroup PartType;
-    public Label machineIDLabel;
-    public Label companyNameLabel;
-    public TextField machineIDTextField;
-    public TextField companyNameTextField;
-    public TextField partIDTextField;
-    public TextField partNameTextField;
-    public TextField partInventoryTextField;
-    public TextField partPriceTextField;
-    public TextField partMinTextField;
-    public TextField partMaxTextField;
-    public TableColumn<Object, Object> partIdColumn;
-    public TableColumn<Object, Object> partNameColumn;
-    public TableColumn<Object, Object> partInventoryColumn;
-    public TableColumn<Object, Object> partPriceColumn;
-    public TableView<Part> allPartTable;
+    @FXML private RadioButton InHouseRadio;
+    @FXML private RadioButton OutsourcedRadio;
+    @FXML private Label machineIDLabel;
+    @FXML private Label companyNameLabel;
+    @FXML private TextField machineIDTextField;
+    @FXML private TextField companyNameTextField;
+    @FXML private TextField partIDTextField;
+    @FXML private TextField partNameTextField;
+    @FXML private TextField partInventoryTextField;
+    @FXML private TextField partPriceTextField;
+    @FXML private TextField partMinTextField;
+    @FXML private TextField partMaxTextField;
 
+    @FXML private TableColumn<Object, Object> partIdColumn;
+    @FXML private TableColumn<Object, Object> partNameColumn;
+    @FXML private TableColumn<Object, Object> partInventoryColumn;
+    @FXML private TableColumn<Object, Object> partPriceColumn;
+    @FXML private TableView<Part> allPartTable;
+
+    public ToggleGroup PartType;
     private boolean errorCheck = false;
     private int index;
+
+    //    private ToggleGroup PartType;
 
 
     @Override

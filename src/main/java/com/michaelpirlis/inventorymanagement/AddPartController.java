@@ -24,25 +24,27 @@ import static com.michaelpirlis.inventorymanagement.models.Inventory.getAllParts
 
 public class AddPartController extends Application implements Initializable {
 
-    public RadioButton InHouseRadio;
-    public RadioButton OutsourcedRadio;
+    @FXML private RadioButton InHouseRadio;
+    @FXML private RadioButton OutsourcedRadio;
+    @FXML private Label machineIDLabel;
+    @FXML private Label companyNameLabel;
+    @FXML private TextField machineIDTextField;
+    @FXML private TextField companyNameTextField;
+    @FXML private TextField partNameTextField;
+    @FXML private TextField partInventoryTextField;
+    @FXML private TextField partPriceTextField;
+    @FXML private TextField partMinTextField;
+    @FXML private TextField partMaxTextField;
+
+    @FXML private TableColumn<Object, Object> partIdColumn;
+    @FXML private TableColumn<Object, Object> partNameColumn;
+    @FXML private TableColumn<Object, Object> partInventoryColumn;
+    @FXML private TableColumn<Object, Object> partPriceColumn;
+    @FXML private TableView<Part> allPartTable;
+
     public ToggleGroup PartType;
-    public Label machineIDLabel;
-    public Label companyNameLabel;
-    public TextField partIDTextField;
-    public TextField machineIDTextField;
-    public TextField companyNameTextField;
-    public TextField partNameTextField;
-    public TextField partInventoryTextField;
-    public TextField partPriceTextField;
-    public TextField partMinTextField;
-    public TextField partMaxTextField;
-    public TableColumn<Object, Object> partIdColumn;
-    public TableColumn<Object, Object> partNameColumn;
-    public TableColumn<Object, Object> partInventoryColumn;
-    public TableColumn<Object, Object> partPriceColumn;
-    public TableView<Part> allPartTable;
-    boolean errorCheck = false;
+
+    private boolean errorCheck = false;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -74,7 +76,7 @@ public class AddPartController extends Application implements Initializable {
         errorCheck = false;
     }
 
-    public void resetSaveForm() {
+    private void resetSaveForm() {
         partNameTextField.clear();
         partPriceTextField.clear();
         partInventoryTextField.clear();
@@ -86,7 +88,7 @@ public class AddPartController extends Application implements Initializable {
         InHouseEnabled();
     }
 
-    public void partErrorHandling() {
+    private void partErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
 
         if (partNameTextField.getText().isEmpty()) {
@@ -154,7 +156,7 @@ public class AddPartController extends Application implements Initializable {
         }
     }
 
-    public void logicErrorHandling() {
+    private void logicErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
         int min = Integer.parseInt(partMinTextField.getText());
         int max = Integer.parseInt(partMaxTextField.getText());
@@ -179,7 +181,8 @@ public class AddPartController extends Application implements Initializable {
         }
     }
 
-    public void savePartButton() {
+    @FXML
+    private void savePartButton() {
         int partGeneratedId = getAllParts().size() + 1;
 
         partErrorHandling();
