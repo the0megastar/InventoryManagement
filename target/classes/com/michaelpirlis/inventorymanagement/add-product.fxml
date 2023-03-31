@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -100,27 +99,52 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="CENTER" promptText="Name">
+                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Name">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="productName" alignment="CENTER" promptText="Name">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="CENTER" promptText="Current Inventory">
+                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Current Inventory">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="productInventory" alignment="CENTER" promptText="Current Inventory">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="CENTER" promptText="Price / Cost">
+                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Price / Cost">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="productPrice" alignment="CENTER" promptText="Price / Cost">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="CENTER" promptText="Minimum Inventory">
+                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Minimum">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="productMinimum" alignment="CENTER" promptText="Minimum Inventory">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="CENTER" promptText="Maximum Inventory">
+                  <Label contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="Maximum">
+                     <font>
+                        <Font name="Avenir Book" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="productMaximum" alignment="CENTER" promptText="Maximum Inventory">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -141,7 +165,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Save">
+                  <Button mnemonicParsing="false" onAction="#saveProductButton" prefHeight="25.0" prefWidth="200.0" text="Save">
                      <font>
                         <Font name="Avenir Book" size="14.0" />
                      </font>
@@ -154,19 +178,9 @@
                         <Font name="Avenir Book" size="14.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="34.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="200.0" text="ALERTS">
-                     <font>
-                        <Font name="Avenir Book" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea prefHeight="150.0" prefWidth="200.0" promptText="Alerts adding a product will appear here.">
-                     <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
-                  </TextArea>
+                  </Button>
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" />
