@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 import static com.michaelpirlis.inventorymanagement.models.Inventory.addPart;
 import static com.michaelpirlis.inventorymanagement.models.Inventory.getAllParts;
 
+
+/** The Add Part Controller class launches GUI and form that allows Part creation. */
 public class AddPartController extends Application implements Initializable {
 
     @FXML private RadioButton InHouseRadio;
@@ -46,6 +48,8 @@ public class AddPartController extends Application implements Initializable {
 
     private boolean errorCheck = false;
 
+
+    /** Loads the add part FXML file for the application, sets up the scene, and displays the stage.*/
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AddPartController.class.getResource("add-part.fxml"));
@@ -55,11 +59,15 @@ public class AddPartController extends Application implements Initializable {
         stage.show();
     }
 
+    /** Initializes the part table. I expanded the scope to have the part table on the Add Part screen. This allows
+     * for multiple parts to be created and the results to be seen instantly by the user to increase user
+     * feedback and rapid part creation. */
     public void initialize(URL location, ResourceBundle resources) {
 
         InventoryController.partTableSetup(allPartTable, partIdColumn, partNameColumn, partInventoryColumn, partPriceColumn);
     }
 
+    /** Used to set the labels and text fields for Outsourced and to hide the InHouse label and text field. */
     public void OutsourcedEnabled() {
         machineIDLabel.setVisible(false);
         machineIDTextField.setVisible(false);
@@ -68,6 +76,7 @@ public class AddPartController extends Application implements Initializable {
         errorCheck = false;
     }
 
+    /** Used to set the labels and text fields for InHouse and to hide the Outsourced label and text field. */
     public void InHouseEnabled() {
         machineIDLabel.setVisible(true);
         machineIDTextField.setVisible(true);
@@ -76,6 +85,7 @@ public class AddPartController extends Application implements Initializable {
         errorCheck = false;
     }
 
+    /** Used to clear all text fields and enable the InHouse radio button and form. Created a default view. */
     private void resetSaveForm() {
         partNameTextField.clear();
         partPriceTextField.clear();
@@ -88,6 +98,13 @@ public class AddPartController extends Application implements Initializable {
         InHouseEnabled();
     }
 
+    /** Used to check all text fields verify they are not empty. Includes checking for values to catch
+     * number exceptions. I made the section exceptionally verbose to show a specific message on which field
+     * is impacted and if a number is entered into the correct fields. I could have easily created a generic
+     * message that states all fields need t be completed and that an empty field was detected. With the current
+     * implementation a future enhancement could be to use a css style sheet and highlight the fields with a color
+     * such as red. I also added an error check to prevent empty fields from progressing further and causing additional
+     * null exceptions. This logic is reused multiple times and kept private in each instance. */
     private void partErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
 
@@ -156,6 +173,10 @@ public class AddPartController extends Application implements Initializable {
         }
     }
 
+    /** After validating the fields have content, the logic checks are implemented to make sure all values are within
+     * scope. Future checks can easily be incorporated into this section. If this section fails, the error check will
+     * be false to prevent further exceptions and progressions to the save. This logic is also reused multiple
+     * times and kept private. */
     private void logicErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
         int min = Integer.parseInt(partMinTextField.getText());
@@ -181,6 +202,10 @@ public class AddPartController extends Application implements Initializable {
         }
     }
 
+    /** Saves the part as InHouse or Outsourced. Runs Error handling and logic checks prior to the save.
+     * each section requires the error check to be true to continue. Event after a part is saved value is set
+     * to false. I noticed you could save a part and the error check would remain true allowing a bypass back to
+     * the save which created an exception. I also clear all fields and reset the forms fo further integrity. */
     @FXML
     private void savePartButton() {
         int partGeneratedId = getAllParts().size() + 1;
@@ -227,6 +252,7 @@ public class AddPartController extends Application implements Initializable {
         }
     }
 
+    /** Loads the inventory FXML file to return back to the main screen when the user presses "Cancel".*/
     @FXML
     private void cancelButton(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inventory.fxml")));

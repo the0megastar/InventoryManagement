@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 
 import static com.michaelpirlis.inventorymanagement.models.Inventory.*;
 
+
+/** The Add Product Controller class launches GUI and form that allows Product creation. */
 public class AddProductController extends Application implements Initializable {
 
     @FXML private TableColumn<Object, Object> partIdColumn;
@@ -47,6 +49,7 @@ public class AddProductController extends Application implements Initializable {
     private boolean errorCheck = false;
 
 
+    /** Loads the add product FXML file for the application, sets up the scene, and displays the stage. */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AddProductController.class.getResource("add-product.fxml"));
@@ -56,12 +59,17 @@ public class AddProductController extends Application implements Initializable {
         stage.show();
     }
 
+    /** Initializes the part table and associated part table. */
     public void initialize(URL location, ResourceBundle resources) {
 
         InventoryController.partTableSetup(allPartTable, partIdColumn, partNameColumn, partInventoryColumn, partPriceColumn);
         associatedPartTable();
     }
 
+    /** Method to configure the columns within the associated part Table and assign values then called in the
+     * initializer. I ran into an issue where the table would not populate unless I set it to Visible. I realized
+     * after spending way too long on the issue, that I kept trying to use (associatedParts()) instead of
+     * (associatedParts). Easy mistake that used hours to debug. */
     private void associatedPartTable() {
         associatedIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -70,6 +78,8 @@ public class AddProductController extends Application implements Initializable {
         associatedTable.setItems(associatedParts);
     }
 
+    /** Generates a dialog box when no search results are found. Creating the specific look too multiple
+     * attempts. The dialog box by default appears dated and not optimized to display meaningful content.*/
     private void searchAlert() {
         Alert searchError = new Alert(Alert.AlertType.INFORMATION);
         searchError.setTitle("No Search Results Found");
@@ -79,6 +89,9 @@ public class AddProductController extends Application implements Initializable {
         searchError.showAndWait();
     }
 
+    /** Stores the search criteria in a string and checks for a matching name. If the search results are empty,
+     * then the process moves towards looking for a matching id. If nothing is found after both searches
+     * the alert appears. A try catch loop was added in case an unexpected value reaches the integer search. */
     @FXML
     private void searchParts() {
         String searchString = partSearch.getText();
@@ -105,6 +118,8 @@ public class AddProductController extends Application implements Initializable {
         partSearch.clear();
     }
 
+    /** Takes the selected part, adds it to the Array List, displays in the associated table and then clears the selection
+     * from the part table. Added a null check to prevent the exception errors that occurred.*/
     @FXML
     private void addAssociatedButton() {
         Part selectedPart = allPartTable.getSelectionModel().getSelectedItem();
@@ -116,6 +131,9 @@ public class AddProductController extends Application implements Initializable {
         }
     }
 
+    /** Takes the selected part, if no selection is made the following actions are not performed. If a value is selected
+     * the associated part deletion dialog appears to confirm the choice and afterward removes the associated part from
+     * the Array List. */
     @FXML
     private void removeAssociatedButton() {
         Part selectedPart = associatedTable.getSelectionModel().getSelectedItem();
@@ -135,6 +153,13 @@ public class AddProductController extends Application implements Initializable {
             }
         }
 
+    /** Used to check all text fields verify they are not empty. Includes checking for values to catch
+     * number exceptions. I made the section exceptionally verbose to show a specific message on which field
+     * is impacted and if a number is entered into the correct fields. I could have easily created a generic
+     * message that states all fields need t be completed and that an empty field was detected. With the current
+     * implementation a future enhancement could be to use a css style sheet and highlight the fields with a color
+     * such as red. I also added an error check to prevent empty fields from progressing further and causing additional
+     * null exceptions. This logic is reused multiple times and kept private in each instance. */
     private void productErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
 
@@ -195,6 +220,10 @@ public class AddProductController extends Application implements Initializable {
         }
     }
 
+    /** After validating the fields have content, the logic checks are implemented to make sure all values are within
+     * scope. Future checks can easily be incorporated into this section. If this section fails, the error check will
+     * be false to prevent further exceptions and progressions to the save. This logic is also reused multiple
+     * times and kept private. */
     private void logicErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
         int min = Integer.parseInt(productMinimum.getText());
@@ -220,6 +249,9 @@ public class AddProductController extends Application implements Initializable {
         }
     }
 
+    /** Saves the product. Runs Error handling and logic checks prior to the save. Each section requires the
+     * error check to be true to continue. Event after a product is saved value is set to false.
+     * I also clear all fields and reset the forms fo further integrity. */
     @FXML
     private void saveProductButton(ActionEvent event) throws IOException {
         int productGeneratedId = getAllProducts().size() + 1;
@@ -249,15 +281,13 @@ public class AddProductController extends Application implements Initializable {
         }
     }
 
+    /** Loads the inventory FXML file to return back to the main screen when the user presses "Cancel".*/
     @FXML
     private void cancelButton(ActionEvent event) throws IOException {
-        Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inventory.fxml")));
-        Scene mainMenuScene = new Scene(mainMenuParent);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(mainMenuScene);
-        appStage.show();
+        returnHome(event);
     }
 
+    /** Loads the inventory FXML file to return back to the main screen. */
     private void returnHome(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inventory.fxml")));
         Scene mainMenuScene = new Scene(mainMenuParent);

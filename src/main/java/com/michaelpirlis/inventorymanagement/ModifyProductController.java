@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 import static com.michaelpirlis.inventorymanagement.InventoryController.modifyProduct;
 import static com.michaelpirlis.inventorymanagement.models.Inventory.lookupPart;
 
+
+/** The Modify Product Controller class launches GUI and form that allows Product modification. */
 public class ModifyProductController extends Application implements Initializable {
 
     @FXML private TableColumn<Object, Object> partIdColumn;
@@ -50,6 +52,7 @@ public class ModifyProductController extends Application implements Initializabl
     private int index;
 
 
+    /** Loads the modify product FXML file for the application, sets up the scene, and displays the stage. */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ModifyProductController.class.getResource("modify-product.fxml"));
@@ -59,6 +62,7 @@ public class ModifyProductController extends Application implements Initializabl
         stage.show();
     }
 
+    /** Initializes the part table, associated part table, and load the Product details into the text fields. */
     public void initialize(URL location, ResourceBundle resources) {
 
         modifyProductImport();
@@ -66,6 +70,8 @@ public class ModifyProductController extends Application implements Initializabl
         associatedPartTable();
     }
 
+    /** Method to configure the columns within the associated part Table and assign values then called in the
+     * initializer. I was able to reuse the code from the Add Product Controller.*/
     private void associatedPartTable() {
         associatedIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -74,6 +80,8 @@ public class ModifyProductController extends Application implements Initializabl
         associatedTable.setItems(associatedParts);
     }
 
+    /** The method gathers the modifyProduct from the Inventory screen and loads the text fields with the information.
+     * It also checks for associated parts and adds them to the local array to be loaded into the table. */
     private void modifyProductImport() {
         if (modifyProduct != null) {
             try {
@@ -92,6 +100,8 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** Generates a dialog box when no search results are found. Creating the specific look too multiple
+     * attempts. The dialog box by default appears dated and not optimized to display meaningful content.*/
     private void searchAlert() {
         Alert searchError = new Alert(Alert.AlertType.INFORMATION);
         searchError.setTitle("No Search Results Found");
@@ -101,6 +111,9 @@ public class ModifyProductController extends Application implements Initializabl
         searchError.showAndWait();
     }
 
+    /** Stores the search criteria in a string and checks for a matching name. If the search results are empty,
+     * then the process moves towards looking for a matching id. If nothing is found after both searches
+     * the alert appears. A try catch loop was added in case an unexpected value reaches the integer search. */
     @FXML
     private void searchParts() {
         String searchString = partSearch.getText();
@@ -127,6 +140,8 @@ public class ModifyProductController extends Application implements Initializabl
         partSearch.clear();
     }
 
+    /** Takes the selected part, adds it to the Array List, displays in the associated table and then clears the selection
+     * from the part table. Added a null check to prevent the exception errors that occurred.*/
     @FXML
     private void addAssociatedButton() {
         Part selectedPart = allPartTable.getSelectionModel().getSelectedItem();
@@ -138,6 +153,9 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** Takes the selected part, if no selection is made the following actions are not performed. If a value is selected
+     * the associated part deletion dialog appears to confirm the choice and afterward removes the associated part from
+     * the Array List. */
     @FXML
     private void removeAssociatedButton() {
         Part selectedPart = associatedTable.getSelectionModel().getSelectedItem();
@@ -157,6 +175,13 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** Used to check all text fields verify they are not empty. Includes checking for values to catch
+     * number exceptions. I made the section exceptionally verbose to show a specific message on which field
+     * is impacted and if a number is entered into the correct fields. I could have easily created a generic
+     * message that states all fields need t be completed and that an empty field was detected. With the current
+     * implementation a future enhancement could be to use a css style sheet and highlight the fields with a color
+     * such as red. I also added an error check to prevent empty fields from progressing further and causing additional
+     * null exceptions. This logic is reused multiple times and kept private in each instance. */
     private void productErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
 
@@ -217,6 +242,10 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** After validating the fields have content, the logic checks are implemented to make sure all values are within
+     * scope. Future checks can easily be incorporated into this section. If this section fails, the error check will
+     * be false to prevent further exceptions and progressions to the save. This logic is also reused multiple
+     * times and kept private. */
     private void logicErrorHandling() {
         StringBuilder errorMessage = new StringBuilder();
         int min = Integer.parseInt(productMinimum.getText());
@@ -242,6 +271,9 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** Saves the product. Runs Error handling and logic checks prior to the save. Each section requires the
+     * error check to be true to continue. Event after a product is saved value is set to false.
+     * I also clear all fields and reset the forms fo further integrity. */
     @FXML
     private void saveProductButton(ActionEvent event) throws IOException {
 
@@ -270,15 +302,13 @@ public class ModifyProductController extends Application implements Initializabl
         }
     }
 
+    /** Loads the inventory FXML file to return back to the main screen when the user presses "Cancel".*/
     @FXML
     private void cancelButton(ActionEvent event) throws IOException {
-        Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inventory.fxml")));
-        Scene mainMenuScene = new Scene(mainMenuParent);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(mainMenuScene);
-        appStage.show();
+        returnHome(event);
     }
 
+    /** Loads the inventory FXML file to return back to the main screen. */
     private void returnHome(ActionEvent event) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("inventory.fxml")));
         Scene mainMenuScene = new Scene(mainMenuParent);

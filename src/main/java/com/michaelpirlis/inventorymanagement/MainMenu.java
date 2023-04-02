@@ -23,6 +23,7 @@ public class MainMenu extends Application implements Initializable {
         stage.show();
     }
 
+    /** Utilized to initialize prior to the start of the stage. */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
