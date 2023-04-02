@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.michaelpirlis.inventorymanagement","l":"com.michaelpirlis.inventorymanagement"},{"m":"com.michaelpirlis.inventorymanagement","l":"com.michaelpirlis.inventorymanagement.models"}];updateSearchResults();
