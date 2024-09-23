@@ -1,2 +1,2 @@
 # InventoryManagement
-![Main Menu](./Main Menu.png)
+![Main Menu](./Main%20Menu.png)
